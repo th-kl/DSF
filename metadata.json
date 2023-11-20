@@ -1,0 +1,108 @@
+{
+  "metaVariables": {
+    "topic": "influenza-like_illness",
+    "source": "sentinella_reporting_system",
+    "publishingDate": "2023-11-14",
+    "sourceDate": "2023-11-14",
+    "valueCategory": {
+      "column": "valueCategory",
+      "columnDescription": "Defines what the property 'value' represents.",
+      "valueSet": ["consultations"]
+    }
+  },
+  "temporalVariables": {
+    "column": "temporal",
+    "columnDescription": "Temporal information of the value specified in the property 'valueCategory'.",
+    "typeColumn": "temporal_type",
+    "typeColumnDescription": "Specifies the type of temporal value in the property 'temporal'.",
+    "typeValues": ["iso_week_sentinella"]
+  },
+  "groupingVariables": {
+    "georegion": {
+      "column": "georegion",
+      "columnDescription": "Geographical unit of the data record.",
+      "typeColumn": "georegion_type",
+      "typeColumnDescription": "Specifies the type of geographical unit in the property 'georegion'.",
+      "typeValues": {
+        "country": {
+          "valueSet": "CH",
+          "allValue": "all"
+        },
+        "sentinella_region": {
+          "valueSet": ["region_1", "region_2", "region_3", "region_4", "region_5", "region_6", "unknown"],
+          "allValue": "all"
+        }
+      }
+    },
+    "agegroup": {
+      "column": "agegroup",
+      "columnDescription": "Age range brackets used for grouping.",
+      "typeColumn": "agegroup_type",
+      "typeColumnDescription": "Specifies the type of agegroup in the property 'agegroup'. Abbreviations: ili = influenza-like illness; ari = acute respiratory infection.",
+      "typeValues": {
+        "agegroup_ili_ari": {
+          "valueSet": ["0 - 4", "15 - 29", "30 - 64", "5 - 14", "65+", "unknown"],
+          "allValue": "all"
+        }
+      }
+    },
+    "sex": {
+      "column": "sex",
+      "columnDescription": "Sex specification used for grouping.",
+      "valueSet": ["female", "male", "unknown"],
+      "allValue": "all"
+    }
+  },
+  "valueVariables": {
+    "value": {
+      "description": "Represents the value defined by the property 'valueCategory' within the given temporal unit and grouping. For consultations reported in sentinella, the value is extrapolated from the limited number of physician participating.",
+      "valueSetOrRange": [0, 39372.2],
+      "nullValue": "NA",
+      "type": "double"
+    },
+    "prct": {
+      "description": "Proportion of the entry in the property 'value' as percent within the given temporal unit and grouping.",
+      "valueSetOrRange": [0, 100],
+      "nullValue": "NA",
+      "type": "double"
+    },
+    "incValue": {
+      "description": "Incidence value within the given temporal unit and grouping. Based on non-rounded figures of value and pop.",
+      "valueSetOrRange": [0, 987.13],
+      "nullValue": "NA",
+      "type": "double"
+    },
+    "prctConsultations": {
+      "description": "Percentage of doctors' consultations due to either influenza-like illness or acute respiratory infection (defined in the property 'valueCategory'). Based on property 'value'.",
+      "valueSetOrRange": [0, 15.29],
+      "nullValue": "NA",
+      "type": "double"
+    },
+    "popExtrapolation": {
+      "description": "Extrapolated population number within the given temporal unit and grouping.",
+      "valueSetOrRange": [5261.7, 262935],
+      "nullValue": "NA",
+      "type": "double"
+    },
+    "totalConsultationsExtrapolation": {
+      "description": "Extrapolated total patient doctor consultations within the given temporal unit and grouping.",
+      "valueSetOrRange": [232.3, 15602],
+      "nullValue": "NA",
+      "type": "double"
+    }
+  },
+  "entryVariables": {
+    "dataComplete": {
+      "description": "Can data be assumed to be complete (few late reportings to be expected)?",
+      "valueSetOrRange": true,
+      "nullValue": "NA",
+      "type": "logical"
+    },
+    "trend": {
+      "description": "Indicates a trend of an entry with respect to previous entries. Trends for sentinella consultations are calculated as follows: If the property 'incValue' is more than than 10% lower or higher compared to the past two 'incValue' entries, the trend is labeled as 'falling' or 'rising', respectively; else it is labeled 'stagnant'.",
+      "valueSetOrRange": ["rising", "stagnant", "falling"],
+      "nullValue": "NA",
+      "type": "character"
+    }
+  }
+}
