@@ -1,0 +1,106 @@
+{
+  "metaVariables": {
+    "topic": "influenza",
+    "source": "mandatory_reporting_system",
+    "publishingDate": "2023-11-21",
+    "sourceDate": "2023-11-20",
+    "valueCategory": {
+      "column": "valueCategory",
+      "columnDescription": "Defines what the property 'value' represents.",
+      "valueSet": ["cases"]
+    }
+  },
+  "temporalVariables": {
+    "column": "temporal",
+    "columnDescription": "Temporal information of the value specified in the property 'valueCategory'. The temporal info of cases is constructed taking the earliest available of either the date of swab, the date of test, or the date the report arrived at the FOPH. In general, the temporal info of cases corresponds to the date the swab was taken.",
+    "typeColumn": "temporal_type",
+    "typeColumnDescription": "Specifies the type of temporal value in the property 'temporal'.",
+    "typeValues": ["iso_week"]
+  },
+  "groupingVariables": {
+    "georegion": {
+      "column": "georegion",
+      "columnDescription": "Geographical unit of the data record.",
+      "typeColumn": "georegion_type",
+      "typeColumnDescription": "Specifies the type of geographical unit in the property 'georegion'.",
+      "typeValues": {
+        "canton": {
+          "valueSet": ["BE", "BS", "GE", "NE", "SO", "VD", "ZH", "AG", "AI", "AR", "BL", "FR", "GL", "GR", "JU", "LU", "NW", "OW", "SG", "SH", "SZ", "TG", "TI", "unknown", "UR", "VS", "ZG"],
+          "allValue": "all"
+        },
+        "CHFL": {
+          "valueSet": "CHFL",
+          "allValue": "all"
+        },
+        "country": {
+          "valueSet": ["CH", "FL"],
+          "allValue": "all"
+        }
+      }
+    },
+    "agegroup": {
+      "column": "agegroup",
+      "columnDescription": "Age range brackets used for grouping.",
+      "typeColumn": "agegroup_type",
+      "typeColumnDescription": "Specifies the type of agegroup in the property 'agegroup'. Abbreviations: ili = influenza-like illness; ari = acute respiratory infection.",
+      "typeValues": {
+        "agegroup_ili_ari": {
+          "valueSet": ["0 - 4", "30 - 64", "5 - 14", "65+", "15 - 29", "unknown"],
+          "allValue": "all"
+        }
+      }
+    },
+    "sex": {
+      "column": "sex",
+      "columnDescription": "Sex specification used for grouping.",
+      "valueSet": ["female", "male", "unknown"],
+      "allValue": "all"
+    },
+    "type": {
+      "column": "type",
+      "columnDescription": "Type specification used for grouping within the property 'pathogen' (or if topic is influenza).",
+      "valueSet": ["A", "B", "unknown"],
+      "allValue": "all"
+    }
+  },
+  "valueVariables": {
+    "value": {
+      "description": "Represents the value defined by the property 'valueCategory' within the given temporal unit and grouping.",
+      "valueSetOrRange": [0, 3775],
+      "nullValue": "NA",
+      "type": "integer"
+    },
+    "pop": {
+      "description": "Population number within the given temporal unit and grouping.",
+      "valueSetOrRange": [15778, 8777846],
+      "nullValue": "NA",
+      "type": "integer"
+    },
+    "prct": {
+      "description": "Proportion of the entry in the property 'value' as percent within the given temporal unit and grouping. When the property 'valueCategory' equals 'tests', this percentage denotes the proportions within the property 'testResult'.",
+      "valueSetOrRange": [0, 100],
+      "nullValue": "NA",
+      "type": "double"
+    },
+    "incValue": {
+      "description": "Incidence value within the given temporal unit and grouping. Based on non-rounded figures of value and pop.",
+      "valueSetOrRange": [0, 94.74],
+      "nullValue": "NA",
+      "type": "double"
+    },
+    "inc14d": {
+      "description": "Rolling 14-day incidence calculated by summing up the last 2 weeks of the property 'value' and dividing by the mean population over the last 2 weeks. This metric is right-aligned.",
+      "valueSetOrRange": [0, 166.43],
+      "nullValue": "NA",
+      "type": "double"
+    }
+  },
+  "entryVariables": {
+    "dataComplete": {
+      "description": "Can data be assumed to be complete (few late reportings to be expected)?",
+      "valueSetOrRange": true,
+      "nullValue": "NA",
+      "type": "logical"
+    }
+  }
+}

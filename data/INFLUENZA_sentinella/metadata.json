@@ -2,8 +2,8 @@
   "metaVariables": {
     "topic": "influenza-like_illness",
     "source": "sentinella_reporting_system",
-    "publishingDate": "2023-11-14",
-    "sourceDate": "2023-11-14",
+    "publishingDate": "2023-11-21",
+    "sourceDate": "2023-11-21",
     "valueCategory": {
       "column": "valueCategory",
       "columnDescription": "Defines what the property 'value' represents.",
