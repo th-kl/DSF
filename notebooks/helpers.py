@@ -5,6 +5,7 @@ import matplotlib.ticker as ticker
 import os
 from statsmodels.tsa.seasonal import STL, seasonal_decompose
 import seaborn as sns
+import math
 
 
 
@@ -40,15 +41,14 @@ def stitch_series(canton, df1, df2):
     merged_df = df1[duplicate_columns].T.join(df2[duplicate_columns].T, on='Woche', lsuffix='_1', rsuffix='_2')
 
     # Factors to calculate
+    factor_df = pd.DataFrame()
     factor_cols = set(map(lambda x: x[1], merged_df.columns))
     for col in factor_cols:
-        merged_df[col+'_fact'] = merged_df[canton+'_1', col] / merged_df[canton+'_2', col]
-
+        factor_df[col+'_fact'] = merged_df[canton+'_1', col] / merged_df[canton+'_2', col]
     # Replace division by zero with NaN before calculating the rescaling factor
-    merged_df.replace([np.inf, -np.inf], np.nan, inplace=True)
-
+    factor_df.replace([np.inf, -np.inf], np.nan, inplace=True)
     # Calculate factor for adjustment of time series across overlapping timesteps and queries (in order to normalize according to same factor)
-    factor = merged_df[['Grippe_fact', 'influenza_fact', 'Flu_fact', 'Influenza_fact']].mean(axis=1, skipna=True).mean(skipna=True)
+    factor = factor_df.mean(axis=1, skipna=True).mean(skipna=True)
 
     # Multiply all values in 2017 dataframe with factor
     scaled_df2 = factor * df2
@@ -134,4 +134,62 @@ def plot_missing(data,
     ax.set_title(plot_title, y=1.08, fontsize=font_size, fontweight="bold")
     plt.suptitle(plot_sup_title, y=0.94, fontsize=font_size - 1)
     fig.autofmt_xdate()
+    plt.show()
+
+
+def plot_google(df):
+    # Define subplot size
+    subplot_width = 3
+    subplot_height = 2
+
+    # Determine the number of rows and columns for subplots
+    num_columns = len(df.columns)
+    num_rows = int(math.ceil(num_columns / 4))  # Adjust the divisor to change the number of columns per row
+    num_cols = min(num_columns, 4)
+
+    # Calculate total figure size
+    fig_width = num_cols * subplot_width
+    fig_height = num_rows * subplot_height
+
+    fig, ax = plt.subplots(num_rows, num_cols, figsize=(fig_width, fig_height), sharex=True, sharey=True)
+
+    plt.style.use('ggplot')
+
+    # Adjust the subplots' layout
+    fig.subplots_adjust(hspace=0.5, wspace=0.5)
+
+    # Set a common y-axis limit
+    y_limit = 110
+
+    # Handle the case of a single row
+    if num_rows == 1:
+        ax = [ax]
+
+    # Iterate through each subplot and plot the data
+    i, j = 0, 0
+    for entry in df.columns:
+        title = entry.replace("()", "")
+        ax[i][j].plot(df[entry], label=entry)
+        ax[i][j].set_title(title, fontsize=9)
+        ax[i][j].tick_params(axis='x', labelrotation=45)  # Rotate x-axis labels
+        ax[i][j].tick_params(axis='both', labelsize=8)  # Set tick label size
+        ax[i][j].set_ylim([0, y_limit])  # Set y-axis limit for each subplot
+
+        # Move to next subplot
+        j += 1
+        if j == num_cols:
+            i += 1
+            j = 0
+
+    # Hide unused subplots
+    for p in range(i, num_rows):
+        for q in range(j, num_cols):
+            ax[p][q].axis('off')
+
+    # Add overarching title
+    plt.suptitle(f'Indexed Cantonal Search Activity for {entry.split("_(")[0].strip(":")}')
+
+    # Adjust overall layout
+    plt.tight_layout()
+
     plt.show()
