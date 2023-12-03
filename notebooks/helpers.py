@@ -6,7 +6,8 @@ import os
 from statsmodels.tsa.seasonal import STL, seasonal_decompose
 import seaborn as sns
 import math
-
+import datetime
+from datetime import datetime
 
 
 def clean_google(df):
@@ -192,4 +193,70 @@ def plot_google(df):
     # Adjust overall layout
     plt.tight_layout()
 
+    plt.show()
+
+def stl_decomposition(data, period=None, robust=True, figsize=(5, 5)):
+    # Apply STL decomposition
+    decomp = STL(data, period=period, robust=robust).fit()  # 'period=52' for weekly data
+
+    # Plot the results
+    fig, axs = plt.subplots(4, sharex=True, figsize=figsize)  # Increase the number of subplots to 4
+
+    # Determine the common y-axis range for the components (excluding the original time series for clarity)
+    common_ylim = (min(decomp.trend.min(), decomp.seasonal.min(), decomp.resid.min()),
+                max(decomp.trend.max(), decomp.seasonal.max(), decomp.resid.max()))
+
+    # Plot the original time series
+    axs[0].plot(data, label='Original')
+    axs[0].set_title('Original Time Series')
+    # Set the y-axis limit for the original time series to its own min and max
+    axs[0].set_ylim(data.min(), data.max())
+
+    # Plot each decomposed component with the same y-axis limits
+    axs[1].plot(decomp.trend)
+    axs[1].set_title('Trend')
+    axs[1].set_ylim(common_ylim)
+
+    axs[2].plot(decomp.seasonal)
+    axs[2].set_title('Seasonal')
+    axs[2].set_ylim(common_ylim)
+
+    axs[3].plot(decomp.resid)
+    axs[3].set_title('Residual')
+    axs[3].set_ylim(common_ylim)
+
+    # Add region_query pair as supertitle
+    plt.suptitle(f'STL decomposition for {data.name}')
+
+    # Show the plot with a tight layout
+    plt.tight_layout()
+    plt.show()
+    return decomp
+
+# Based on ritvik math
+def plot_estimated(data, decomposition, figsize=(12, 4)):    
+    estimated = decomposition.trend + decomposition.seasonal
+    plt.figure(figsize=figsize)
+    for year in range(2013, 2024):
+        plt.axvline(datetime(year, 1, 1), color='k', linestyle='--', alpha=0.25)
+    plt.plot(data, label='Data')
+    plt.plot(estimated, label='Estimation')
+    plt.legend()
+    plt.suptitle(f'Estimation vs. True Data-Series for {data.name}')
+    plt.tight_layout()
+    plt.show()
+
+# Based on ritvik math
+def plot_anomalies(data, decomposition):
+    resid_mean = decomposition.resid.mean()
+    resid_dev = decomposition.resid.std()
+    lower = resid_mean - 3*resid_dev
+    upper = resid_mean + 3*resid_dev
+    plt.figure(figsize=(10, 4))
+    for year in range(2013, 2024):
+        plt.axvline(datetime(year, 1, 1), color='k', linestyle='--', alpha=0.15)
+    plt.plot(decomposition.resid)
+    plt.fill_between([datetime(2013,1,1), datetime(2023,11,18)], lower, upper, color='g', alpha=0.25, linestyle='--')
+    plt.suptitle(f'Anomaly Detection in Residuals for {data.name}')
+    plt.tight_layout()
     plt.show()
