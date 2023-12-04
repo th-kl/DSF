@@ -195,7 +195,7 @@ def plot_google(df):
 
     plt.show()
 
-def stl_decomposition(data, period=None, robust=True, figsize=(10, 8)):
+def plot_stl_decomposition(data, period=None, robust=True, figsize=(10, 8)):
     # Apply STL decomposition
     decomp = STL(data, period=period, robust=robust).fit()  # 'period=52' for weekly data
 
