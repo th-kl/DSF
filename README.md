@@ -18,7 +18,7 @@ To view the data, refer to the data folder.
 | ----------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
 | Random_Forest_Autoregressive.ipynb  | Random Forest Model, with autoregressive prediction of incValue                                                                          |
 | Weather_cleaning_copy.ipynb         | Data preparation and cleaning of weather data                                                                                            |
-| arima*sarima*.ipynb                 | ARIMA, SARIMA, and SARIMAX Models                                                                                                        |
+| arima_sarima_.ipynb                 | ARIMA, SARIMA, and SARIMAX Models                                                                                                        |
 | exploration.ipynb                   | Some data exploration of Sentinella data                                                                                                 |
 | ffn_google_forecast.ipynb           | FFN including exogenous google data                                                                                                      |
 | ffn_model.ipynb                     | Base FFN Model                                                                                                                           |
