@@ -2,7 +2,7 @@
 
 ## Notebooks
 Name                                    Description
-Random_Forest_Autoregressive.ipynb      Random Forrest Model                 
+Random_Forest_Autoregressive.ipynb      Random Forest Model, with autoregressive prediction of incValue              
 Weather_cleaning_copy.ipynb             Data preperation and cleaning of weather data
 arima_sarima_.ipynb                     ARIMA, SARIMA, and SARIMAX Models
 exploration.ipynb                       Some data exploration of Sentinella data
@@ -15,8 +15,8 @@ google_notebook_husten_fieber.ipynb     Data preperation and cleaning of google 
 helpers.py                              ..
 naive_forecast_base.ipynb               Naive forecast / base model
 population_data.ipynb                   Data preperation and cleaning of population data
-random_forest_1y_lags.ipynb             Random Forrest Model variantion with 1 year lags
-random_forest_exogenous.ipynb           Random Forrest Model variantion with 1 year lags
+random_forest_1y_lags.ipynb             Random Forest Model variations with 1 year lags
+random_forest_exogenous.ipynb           Random Forest Model variations with autoregressive prediction of incValue and Google Grippe trends, as well as combination with 1 y lags
 requirements.txt                        Requirements for creating a virtual enviornment
 archive                                 Archive of notebooks
 
