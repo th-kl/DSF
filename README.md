@@ -4,7 +4,7 @@
 Name                                    Description
 Random_Forest_Autoregressive.ipynb      Random Forrest Model                 
 Weather_cleaning_copy.ipynb             Data preperation and cleaning of weather data
-arima_sarima_.ipynb                     ARIMA and SARIMA Models
+arima_sarima_.ipynb                     ARIMA, SARIMA, and SARIMAX Models
 exploration.ipynb                       Some data exploration of Sentinella data
 ffn_google_forecast.ipynb               FFN including exogenous google data
 ffn_model.ipynb                         Base FFN Model
@@ -24,11 +24,11 @@ week_dict                               week dict for consistent coding
 date_dict                               date dict for consistent coding
 
 ## Data
-cv_results                              ...
-google_search_trend                     google trends data
-INFLUENZA_oblig                         influenza data from BAG
-INFLUENZA_sentinella                    influenza data from BAG
-pop_data_cantons                        cantonal population data
+cv_results                              Prediction the Flu Cases after Cross Validation
+google_search_trend                     Google Trends Data
+INFLUENZA_oblig                         Influenza Data from BAG
+INFLUENZA_sentinella                    Influenza Data from BAG
+pop_data_cantons                        Cantonal Population Data
 scraper                                 ...
-weather                                 weather data from Jan 2013 - Jun 2023
-weather_addition                        weather data from Jun 2023 - Dec 2023
+weather                                 Weather Data from Jan 2013 - Jun 2023
+weather_addition                        Weather Data from Jun 2023 - Dec 2023
