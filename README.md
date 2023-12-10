@@ -6,9 +6,9 @@ This project aimed to create different models to predict incidence values of flu
 
 The notebooks below show the creation of different models, as well as the preparation and exploration of our starting data.
 
-To view the notebooks in the correct order, one would start with the google notebooks, the population data notebook, the exploration notebook as well as the weather cleaning notebook. This is where the data is being prepared.
+To view the notebooks in the correct order, one would start with the google notebooks (google_notebook_grippe.ipynb, google_notebook_husten_fieber.ipynb), the population data notebook (population_data.ipynb), the exploration notebook (exploration.ipynb) as well as the weather cleaning notebook (Weather_cleaning.ipynb). This is where the data is being explored/prepared.
 
-Next, one would view the model notebooks, which are the three random forest notebooks, the arima_sarima notebook as well as the ffn_model notebooks.
+Next, one would view the model notebooks, which are the three random forest notebooks (random_forest_1y_lags.ipynb, Random_Forest_Autoregressive.ipynb, random_forest_exogenous.ipynb), the arima_sarima notebook (arima_sarima_.ipynb) as well as the ffn_model notebooks (ffn_model.ipynb, ffn_model_v2.ipynb, ffn_model_exogenous.ipynb, ffn_google_forecast.ipynb).
 
 To view the data, refer to the data folder.
 
@@ -17,7 +17,7 @@ To view the data, refer to the data folder.
 | Name                                | Description                                                                                                                              |
 | ----------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
 | Random_Forest_Autoregressive.ipynb  | Random Forest Model, with autoregressive prediction of incValue                                                                          |
-| Weather_cleaning_copy.ipynb         | Data preparation and cleaning of weather data                                                                                            |
+| Weather_cleaning.ipynb              | Data preparation and cleaning of weather data                                                                                            |
 | arima_sarima_.ipynb                 | ARIMA, SARIMA, and SARIMAX Models                                                                                                        |
 | exploration.ipynb                   | Some data exploration of Sentinella data                                                                                                 |
 | ffn_google_forecast.ipynb           | FFN including exogenous google data                                                                                                      |
