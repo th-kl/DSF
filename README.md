@@ -1,5 +1,16 @@
 # DSF
 
+## Introduction
+This project aimed to create different models to predict incidence values of flu like diseases in Swiss regions. Specifically, we focused on Time Series Models, Neural Networks, and Random Forests.
+
+The notebooks below show the creation of different models, as well as the preparation and exploration of our starting data.
+
+To view the notebooks in the correct order, one would start with the google notebooks, the population data notebook, the exploration notebook as well as the weather cleaning notebook. This is where the data is being prepared.
+
+Next, one would view the model notebooks, which are the three random forest notebooks, the arima_sarima notebook as well as the ffn_model notebooks.
+
+To view the data, refer to the data folder.
+
 ## Notebooks
 Name                                    Description
 Random_Forest_Autoregressive.ipynb      Random Forest Model, with autoregressive prediction of incValue              
